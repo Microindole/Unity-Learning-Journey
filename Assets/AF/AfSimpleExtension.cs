@@ -113,18 +113,18 @@ public class AfSimpleExtension : Editor
         view.pivot = obj.transform.position;
     }
 
-    //[MenuItem("AF/删除选中物体 _X" , false, 200)]
-    //static void DeleteSelectObjects()
-    //{
-    //    GameObject[] objs = Selection.gameObjects;
+    [MenuItem("AF/删除选中物体 _X" , false, 200)]
+    static void DeleteSelectObjects()
+    {
+        GameObject[] objs = Selection.gameObjects;
 
-    //    foreach ( GameObject obj in objs)
-    //    {
-    //        DestroyImmediate(obj);
-    //    }
+        foreach ( GameObject obj in objs)
+        {
+            DestroyImmediate(obj);
+        }
 
-    //    ShowLog("删除了 " + objs.Length + " 个物体");
-    //}
+        ShowLog("删除了 " + objs.Length + " 个物体");
+    }
          
 
 
