@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RotateLogic : MonoBehaviour
 {
-    float m_rotateSpeed;
+    public Vector3 rotateSpeed;
 
     // Start is called before the first frame update
     void Start()
@@ -15,15 +15,7 @@ public class RotateLogic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        this.transform.Rotate(0, m_rotateSpeed * Time.deltaTime, 0, Space.Self);
-    }
-
-    public void DoRotate()
-    {
-        m_rotateSpeed = 360*3;
-    }
-    public void DoStop()
-    {
-        m_rotateSpeed = 0;
+        // Vector3支持标量乘法，参考第20章
+        this.transform.Rotate(rotateSpeed * Time.deltaTime, Space.Self);
     }
 }
