@@ -39,5 +39,7 @@ public class LightLogic : MonoBehaviour
             Invoke("ChangeColor", 1);
         }
         m_index = (m_index + 1) % colors.Length;
+
+
     }
 }
