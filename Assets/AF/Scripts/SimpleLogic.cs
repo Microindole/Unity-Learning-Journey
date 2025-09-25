@@ -1,41 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Threading;
 
 public class SimpleLogic : MonoBehaviour
 {
-    public Material[] colors;
-
-    //
-    int m_index = 0;
+    public float speed = 2.5f;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        // Thread.CurrentThread.ManagedThreadId
+        Debug.Log("* Start , 线程ID=" + Thread.CurrentThread.ManagedThreadId);
+
+        // 循环反复执行
+        this.InvokeRepeating("DoSomething", 1, 1); // 反射机制
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetMouseButtonDown(0))
-        {
-            ChangeColor();
-        }
+        Debug.Log("* Update , 线程ID=" + Thread.CurrentThread.ManagedThreadId);
+
+        this.transform.Translate(0, speed * Time.deltaTime, 0, Space.Self);
+
     }
 
-    private void ChangeColor()
+    private void DoSomething()
     {
-        m_index += 1;
-        if (m_index >= this.colors.Length)
-            m_index = 0;
+        Debug.Log("* DoSomething 。。。。。。。。。。。 线程ID=" + Thread.CurrentThread.ManagedThreadId);
 
-        //
-        Material selected = this.colors[m_index];
 
-        // 
-        MeshRenderer rd = GetComponent<MeshRenderer>();
-        rd.material = selected;
+        this.speed = 0 - speed;
+    }
 
-    }    
 }

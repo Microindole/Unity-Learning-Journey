@@ -7,41 +7,37 @@ public class CubeLogic : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        AudioSource audio = this.GetComponent<AudioSource>();
-        audio.Play();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        //if(Input.GetMouseButtonDown( 0 ))
-        //{
-        //    PlayMusic();
-        //}
+        // 点鼠标左键后，开始定时器
+        if(Input.GetMouseButtonDown(0))
+        {
+            // 自己根据实际需要，实现自己的逻辑
 
+            // IsInvoking 判断是否已经在调度队列中
+            // CancelInvoke 从调度队列中移除
+            // InvokeRepeating 添加一个新的调度到队列中
+            if ( IsInvoking("Expand"))
+            {
+                CancelInvoke("Expand");
+            }
+            else
+            {
+                InvokeRepeating("Expand", 1, 1);
+            }
+        }
     }
 
-    //void PlayMusic()
-    //{
-        // 获取组件
-        //AudioSource audio = this.GetComponent<AudioSource>();
-        //audio.Play();
-        //audio.mute = true;
+    private void Expand()
+    {
+        Debug.Log("* 变长 。。" + Time.time);
 
-        //audio.loop = true;
-
-        //if( audio.isPlaying )
-        //{
-        //    Debug.Log("* 停止播放");
-        //    audio.Stop();
-        //}
-        //else
-        //{
-        //    Debug.Log("* 开始播放音乐 ..");
-        //    audio.Play();
-        //}
-        
-        
-    //}
-
+        Vector3 scale = this.transform.localScale;
+        scale.y += 1;
+        this.transform.localScale = scale;
+    }
 }
