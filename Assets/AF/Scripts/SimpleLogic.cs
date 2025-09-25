@@ -4,22 +4,11 @@ using UnityEngine;
 
 public class SimpleLogic : MonoBehaviour
 {
-    public int intValue ;
+    public Material[] colors;
 
-    public float floatValue = 0.5f;
+    //
+    int m_index = 0;
 
- 
-    public bool boolValue = true;
-
-
-    public string stringValue = "°¢·¢ÄãºÃ";
-
-
-    public Vector3 rotateSpeed = new Vector3(1,1,1);
-
-    public Color color;
-
-    
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +18,24 @@ public class SimpleLogic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetMouseButtonDown(0))
+        {
+            ChangeColor();
+        }
     }
+
+    private void ChangeColor()
+    {
+        m_index += 1;
+        if (m_index >= this.colors.Length)
+            m_index = 0;
+
+        //
+        Material selected = this.colors[m_index];
+
+        // 
+        MeshRenderer rd = GetComponent<MeshRenderer>();
+        rd.material = selected;
+
+    }    
 }

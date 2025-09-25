@@ -4,42 +4,15 @@ using UnityEngine;
 
 public class MainLogic : MonoBehaviour
 {
-    public RotateLogic rotateLogic1;
-    public RotateLogic rotateLogic2;
-
-    public FlyLogic flyLogic;
-
+    // Start is called before the first frame update
     void Start()
     {
         Application.targetFrameRate = 60;
-
-        rotateLogic1.DoRotate();
-        rotateLogic2.DoRotate();
-
-        AudioSource audio = GetComponent<AudioSource>();
-        audio.Play();
-        audio.loop = true;
     }
 
+    // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.W))
-        {
-            flyLogic.Fly();
-        }
-        else if (Input.GetKey(KeyCode.S))
-        {
-            flyLogic.Land();
-        }
-        else
-        {
-            flyLogic.stop();
-        }
         
-
     }
-
-
-
-
 }
